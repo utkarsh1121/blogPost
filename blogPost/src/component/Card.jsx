@@ -13,9 +13,9 @@ export default function BlogCard() {
   const [readMoreStates, setReadMoreStates] = useState([])
 
   useEffect(() => {
-    const storedValues = JSON.parse(localStorage.getItem("allValues")) || [];
+    const storedValues = JSON.parse(localStorage.getItem("allValues")) || []
     setAllValues(storedValues)
-    setReadMoreStates(new Array(storedValues.length).fill(false));
+    setReadMoreStates(new Array(storedValues.length).fill(false))
   }, [])
 
   const toggleReadMore = (index) => {
