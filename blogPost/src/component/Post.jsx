@@ -1,6 +1,6 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import * as React from "react"
+import { useState, useEffect } from "react"
+import { NavLink, useNavigate } from "react-router-dom"
 
 export default function ActionAreaCard() {
   const [values, setValues] = useState({
@@ -10,45 +10,45 @@ export default function ActionAreaCard() {
     Description: "",
   });
 
-  const [allValues, setAllValues] = useState([]);
+  const [allValues, setAllValues] = useState([])
   const navigate = useNavigate(); // Initialize useNavigate
 
   // Retrieve and set values from localStorage when the component mounts
   useEffect(() => {
-    const storedValues = JSON.parse(localStorage.getItem("allValues")) || [];
+    const storedValues = JSON.parse(localStorage.getItem("allValues")) || []
 
     // Set the array of all stored submissions
-    setAllValues(storedValues);
+    setAllValues(storedValues)
   }, []);
 
   const handleChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+    setValues({ ...values, [e.target.name]: e.target.value })
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Get existing data from localStorage
-    const storedData = JSON.parse(localStorage.getItem("allValues")) || [];
+    const storedData = JSON.parse(localStorage.getItem("allValues")) || []
 
     // Add the new data
-    const updatedData = [...storedData, values];
+    const updatedData = [...storedData, values]
 
     // Store updated data in localStorage
-    localStorage.setItem("allValues", JSON.stringify(updatedData));
+    localStorage.setItem("allValues", JSON.stringify(updatedData))
 
     // Update state to reflect the new submission
-    setAllValues(updatedData);
+    setAllValues(updatedData)
 
     // Optionally clear the form after submission
-    setValues({ Topic: "", Title: "", SubTitle: "", Description: "" });
-    navigate("/");
+    setValues({ Topic: "", Title: "", SubTitle: "", Description: "" })
+    navigate("/")
   };
 
   const handleReset = () => {
-    setValues({ Topic: "", Title: "", SubTitle: "", Description: "" });
-    localStorage.removeItem("allValues");
-    setAllValues([]);
+    setValues({ Topic: "", Title: "", SubTitle: "", Description: "" })
+    localStorage.removeItem("allValues")
+    setAllValues([])
   };
 
   // const handleClick = () => {

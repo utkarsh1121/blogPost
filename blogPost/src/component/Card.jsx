@@ -1,30 +1,30 @@
-import * as React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import { useState, useEffect } from "react";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import CardActionArea from "@mui/material/CardActionArea";
-import CardActions from "@mui/material/CardActions";
+import * as React from "react"
+import Card from "@mui/material/Card"
+import CardContent from "@mui/material/CardContent"
+import { useState, useEffect } from "react"
+import Stack from "@mui/material/Stack"
+import Typography from "@mui/material/Typography"
+import Button from "@mui/material/Button"
+import CardActionArea from "@mui/material/CardActionArea"
+import CardActions from "@mui/material/CardActions"
 
 export default function BlogCard() {
-  const [allValues, setAllValues] = useState([]);
-  const [readMoreStates, setReadMoreStates] = useState([]);
+  const [allValues, setAllValues] = useState([])
+  const [readMoreStates, setReadMoreStates] = useState([])
 
   useEffect(() => {
     const storedValues = JSON.parse(localStorage.getItem("allValues")) || [];
-    setAllValues(storedValues);
+    setAllValues(storedValues)
     setReadMoreStates(new Array(storedValues.length).fill(false));
-  }, []);
+  }, [])
 
   const toggleReadMore = (index) => {
     setReadMoreStates((prevStates) => {
-      const newStates = [...prevStates];
-      newStates[index] = !newStates[index];
-      return newStates;
-    });
-  };
+      const newStates = [...prevStates]
+      newStates[index] = !newStates[index]
+      return newStates
+    })
+  }
 
   return (
     <div className="flex flex-wrap justify-center py-4 opacity-70">
@@ -32,11 +32,11 @@ export default function BlogCard() {
         <Typography variant="h6">No Blogs yet!</Typography>
       ) : (
         allValues.map((entry, index) => {
-          const MAX_LENGTH = 219;
+          const MAX_LENGTH = 219
           const isLongDescription = entry.Description.length > MAX_LENGTH;
           const shortDescription = isLongDescription
             ? entry.Description.slice(0, MAX_LENGTH) + "..."
-            : entry.Description;
+            : entry.Description
 
           return (
             <Card key={index} className="m-4 w-96">
@@ -67,11 +67,11 @@ export default function BlogCard() {
                 </CardActions>
               )}
             </Card>
-          );
+          )
         })
       )}
     </div>
-  );
+  )
 }
 
 
